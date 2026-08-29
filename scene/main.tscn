@@ -9,10 +9,10 @@ size = Vector2(20, 144)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwkyw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwbck"]
-size = Vector2(1170, 20)
+size = Vector2(1176, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7i21o"]
-size = Vector2(20, 671)
+size = Vector2(169, 671)
 
 [node name="Main" type="Node2D" unique_id=2055367458]
 
@@ -23,11 +23,24 @@ script = ExtResource("1_itxqv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1034131413]
 shape = SubResource("RectangleShape2D_ajdik")
 
+[node name="Player" type="CharacterBody2D" parent="Player/CollisionShape2D" unique_id=936332270]
+position = Vector2(43, 317)
+script = ExtResource("1_itxqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CollisionShape2D/Player" unique_id=419290643]
+shape = SubResource("RectangleShape2D_ajdik")
+
+[node name="ColorRect" type="ColorRect" parent="Player/CollisionShape2D/Player" unique_id=2120207595]
+offset_left = 944.0
+offset_top = -439.0
+offset_right = 964.0
+offset_bottom = -215.0
+
 [node name="ColorRect" type="ColorRect" parent="Player" unique_id=524877488]
 offset_left = -10.0
-offset_top = -72.0
+offset_top = -117.0
 offset_right = 10.0
-offset_bottom = 72.0
+offset_bottom = 107.0
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=696813176]
 position = Vector2(463, 307)
@@ -37,24 +50,26 @@ script = ExtResource("2_v0l8b")
 shape = SubResource("RectangleShape2D_bwkyw")
 
 [node name="ColorRect" type="ColorRect" parent="Ball" unique_id=780455491]
-offset_left = -10.0
-offset_top = -10.0
+offset_left = -12.0
+offset_top = -11.0
 offset_right = 10.0
-offset_bottom = 10.0
+offset_bottom = 11.0
 color = Color(1, 0.20784314, 1, 1)
 
 [node name="Wall" type="StaticBody2D" parent="." unique_id=1574135094]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=211759569]
-position = Vector2(575, -8)
+position = Vector2(573, 5)
 shape = SubResource("RectangleShape2D_fwbck")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall" unique_id=138050610]
-position = Vector2(581, 656)
+position = Vector2(581, 711)
 shape = SubResource("RectangleShape2D_fwbck")
 
 [node name="Wall2" type="StaticBody2D" parent="." unique_id=2026625663]
+position = Vector2(8, 14)
+rotation = -0.09002189
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=1607425913]
-position = Vector2(1159, 328)
+position = Vector2(1233.5, 328)
 shape = SubResource("RectangleShape2D_7i21o")
