@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cpsxbe0bp6vdd"]
 
 [ext_resource type="Script" uid="uid://cccr7tvjo0qoh" path="res://script/player.gd" id="1_itxqv"]
+[ext_resource type="Script" uid="uid://duj663u71bgi7" path="res://script/main.gd" id="1_wp4xf"]
 [ext_resource type="Script" uid="uid://du27jihkohg5" path="res://script/ball.gd" id="2_v0l8b"]
+[ext_resource type="Script" uid="uid://b1bwe7aidpv6p" path="res://script/bot.gd" id="3_brvut"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajdik"]
 size = Vector2(20, 144)
@@ -9,15 +11,17 @@ size = Vector2(20, 144)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwkyw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwbck"]
-size = Vector2(1170, 20)
+size = Vector2(1170, 222)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7i21o"]
-size = Vector2(20, 671)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybprc"]
+size = Vector2(215, 631)
 
 [node name="Main" type="Node2D" unique_id=2055367458]
+script = ExtResource("1_wp4xf")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=974107289]
-position = Vector2(43, 317)
+position = Vector2(70, 322)
+motion_mode = 1
 script = ExtResource("1_itxqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1034131413]
@@ -28,9 +32,26 @@ offset_left = -10.0
 offset_top = -72.0
 offset_right = 10.0
 offset_bottom = 72.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Player2" type="CharacterBody2D" parent="." unique_id=525746554]
+position = Vector2(1105, 317)
+motion_mode = 1
+script = ExtResource("3_brvut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=1476032783]
+shape = SubResource("RectangleShape2D_ajdik")
+
+[node name="ColorRect" type="ColorRect" parent="Player2" unique_id=890163445]
+offset_left = -10.0
+offset_top = -72.0
+offset_right = 10.0
+offset_bottom = 72.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=696813176]
 position = Vector2(463, 307)
+motion_mode = 1
 script = ExtResource("2_v0l8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=684034320]
@@ -46,15 +67,40 @@ color = Color(1, 0.20784314, 1, 1)
 [node name="Wall" type="StaticBody2D" parent="." unique_id=1574135094]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=211759569]
-position = Vector2(575, -8)
+position = Vector2(575, -109)
 shape = SubResource("RectangleShape2D_fwbck")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall" unique_id=138050610]
-position = Vector2(581, 656)
+position = Vector2(584, 760)
 shape = SubResource("RectangleShape2D_fwbck")
 
-[node name="Wall2" type="StaticBody2D" parent="." unique_id=2026625663]
+[node name="GoalOne" type="Area2D" parent="." unique_id=550021952]
+position = Vector2(-23, 2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=1607425913]
-position = Vector2(1159, 328)
-shape = SubResource("RectangleShape2D_7i21o")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalOne" unique_id=1094381991]
+position = Vector2(-54, 325.5)
+shape = SubResource("RectangleShape2D_ybprc")
+
+[node name="GoalTwo" type="Area2D" parent="." unique_id=634908779]
+position = Vector2(1294, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalTwo" unique_id=1704985345]
+position = Vector2(-54, 325.5)
+shape = SubResource("RectangleShape2D_ybprc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1744649284]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=2062382768]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = 18.0
+offset_right = 30.0
+offset_bottom = 41.0
+grow_horizontal = 2
+text = "0x0"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="GoalOne" to="." method="_on_goal_one_body_entered"]
+[connection signal="body_entered" from="GoalTwo" to="." method="_on_goal_two_body_entered"]
