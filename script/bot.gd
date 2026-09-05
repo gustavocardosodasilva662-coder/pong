@@ -5,5 +5,8 @@ extends CharacterBody2D
 
 func _physics_process(delta: float) -> void:
 	# ajustar a velocidade do bot em algum momento para dar chance
-	global_position.y = ball.global_position.y
+	var random_level = randi_range(1, 100)
+	var speed = 0.1
 	
+	if random_level <= 65:
+		global_position.y = lerp(global_position.y, ball.global_position.y, speed)
