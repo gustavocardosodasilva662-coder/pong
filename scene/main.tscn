@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dwyruj1q3cc41" path="res://asset/sound/player_score.sfxr" id="6_p1hux"]
 [ext_resource type="AudioStream" uid="uid://wwp886pvdyk3" path="res://asset/sound/soundtrack.ogg" id="7_b5f6u"]
 [ext_resource type="AudioStream" uid="uid://bbbhr1kp4greo" path="res://asset/sound/bot_score.sfxr" id="7_of57s"]
+[ext_resource type="Script" uid="uid://dfb5i7axmy2pn" path="res://script/pause_node.gd" id="9_b5f6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajdik"]
 size = Vector2(20, 144)
@@ -120,6 +121,10 @@ parameters/looping = true
 
 [node name="BotScoreSound" type="AudioStreamPlayer" parent="." unique_id=113649500]
 stream = ExtResource("7_of57s")
+
+[node name="PauseNode" type="Node" parent="." unique_id=1965802201]
+process_mode = 2
+script = ExtResource("9_b5f6u")
 
 [connection signal="body_entered" from="GoalOne" to="." method="_on_goal_one_body_entered"]
 [connection signal="body_entered" from="GoalTwo" to="." method="_on_goal_two_body_entered"]
